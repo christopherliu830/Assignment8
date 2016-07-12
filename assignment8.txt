@@ -1,0 +1,9 @@
+Christopher Liu
+1. The output is ABCabc123. I get how the first part will make the arg capital, but the part after q = p + strlen(a) I don’t get. 
+2. I don’t know what valgrind is, but probably 7?
+3. line 20-23 is redundant and reassigns the array I think. Not sure.
+line 28
+
+4. 
+line 14 char *c
+line 28 [free(p)]

@@ -1,42 +1,68 @@
+/* Christopher Liu */
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+
+void printlist(int * list, int size)
+{
+	printf("LIST: ");
+	for (int i = 0; i < size; i++)
+	{
+		printf("%d ", list[i]);
+	}
+	printf("\n");
+}
 
 int main()
 {
 	srand(time(NULL));
 
-	size_t size;
+	int size;
 	printf("NUMBER: ");
 	scanf("%d", &size);
 	int* num_list = (int*) malloc(size*sizeof(int));
-	printf("%d", (sizeof(num_list)/sizeof(num_list[0])));
 	for (int i = 0; i <  size; i++)
 	{
-		num_list[i] = rand();
-		printf("%d, num_list[i]\n", num_list[i]);
+		num_list[i] = rand()%40;
 	}
 	int* as_sort = (int*) malloc((size+1)*sizeof(int));
+	int* de_sort = (int*) malloc((size+1)*sizeof(int));
 	for (int i = 0; i < size; i++)
 	{
 		as_sort[i] = num_list[i];
+		de_sort[i] = num_list[i];
 	}
-	for (int i = size-1; i <= 0; i--)
+
+	for (int i = 1; i < size; i++)
 	{
-		int key =  i;
-		int j = as_sort[i-1];
-		while (i < j)
+		int key =  as_sort[i];
+		int j = i-1;
+		while (key < as_sort[j])
 		{
 			as_sort[i] = as_sort[j];
 			i--;
 			j--;
-			for (int printi = 0; printi < size+1; i++)
-			{
-				printf("|%d", as_sort[printi]);
-			}
-			printf("\n");
 		}
+		as_sort[i] = key;
 	}
+		for (int i = 1; i < size; i++)
+	{
+		int key =  de_sort[i];
+		int j = i-1;
+		while (key > de_sort[j] && i > 0)
+		{
+			de_sort[i] = de_sort[j];
+			i--;
+			j--;
+		}
+		de_sort[i] = key;
+	}
+	printf("NUMLIST: ");
+	printlist(num_list, size);
+	printf("AS_SORT: ");
+	printlist(as_sort, size);
+	printf("DE_SORT: ");
+	printlist(de_sort, size);
 
 	return 0;
 }
