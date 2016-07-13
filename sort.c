@@ -63,6 +63,9 @@ int main()
 	printlist(as_sort, size);
 	printf("DE_SORT: ");
 	printlist(de_sort, size);
+	free(num_list);
+	free(de_sort);
+	free(as_sort);
 
 	return 0;
 }
